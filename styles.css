@@ -1,0 +1,183 @@
+:root {
+  --border-style: 1px solid #d1d5db;
+}
+
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+}
+
+body {
+  display: grid;
+  grid-template: 70px calc(100vh - 130px) 60px / 100%;
+  grid-template-areas:
+    'header'
+    'main'
+    'footer';
+  font-family: 'Inter', sans-serif;
+  color: #111827;
+  background-color: whitesmoke;
+}
+
+header,
+main,
+footer {
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+header,
+form,
+footer {
+  display: flex;
+  align-items: center;
+  padding: 1.5em;
+}
+
+header {
+  grid-area: header;
+  border-bottom: var(--border-style);
+}
+
+main {
+  grid-area: main;
+  display: flex;
+  flex-direction: column;
+}
+
+form {
+  grid-area: form;
+  height: 140px;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  border-bottom: var(--border-style);
+}
+
+footer {
+  grid-area: footer;
+  justify-content: end;
+  font-size: 0.75rem;
+  font-weight: 500;
+  border-top: var(--border-style);
+}
+
+footer p {
+  margin: 0;
+}
+
+h1 {
+  font-size: 1.5rem;
+  margin: 0;
+}
+
+input,
+select,
+button {
+  height: 40px;
+  font-family: inherit;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: inherit;
+  background-color: transparent;
+  cursor: pointer;
+  border: var(--border-style);
+  border-radius: 5px;
+  outline: none;
+  transition: background-color 200ms ease-in;
+}
+
+button {
+  flex: 1 0 100%;
+  margin-top: 1em;
+}
+
+input:focus,
+select:focus,
+button:focus {
+  box-shadow: 0 0 5px 2px #11182740;
+}
+
+input:hover,
+select:hover,
+button:hover {
+  background-color: #e6e6e6;
+}
+
+select {
+  padding: 0.5em;
+}
+
+button {
+  background-color: transparent;
+  padding: 0.5em 1em;
+}
+
+.results-container {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-auto-flow: row;
+  flex-grow: 1;
+}
+
+.result-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.result-color {
+  flex-grow: 1;
+}
+
+.result-values {
+  font-size: 0.75rem;
+  font-weight: 500;
+  text-align: center;
+  padding: 1em 0.25em;
+}
+
+.result-name {
+  display: none;
+}
+
+@media (min-width: 512px) {
+  h1 {
+    font-size: 2rem;
+  }
+
+  input,
+  select,
+  button {
+    font-size: 1rem;
+  }
+
+  form {
+    height: 84px;
+  }
+
+  button {
+    flex: none;
+    margin-top: 0;
+  }
+
+  .result-values {
+    font-size: 1rem;
+  }
+}
+
+@media (min-width: 800px) {
+  body {
+    grid-template: 80px calc(100vh - 160px) 80px / 100%;
+    grid-template-areas:
+      'header'
+      'main'
+      'footer';
+  }
+
+  .result-name {
+    display: block;
+    font-size: 0.875rem;
+    margin-bottom: 0.75em;
+  }
+}
