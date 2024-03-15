@@ -12,7 +12,7 @@
 
 body {
   display: grid;
-  grid-template: 70px calc(100vh - 130px) 60px / 100%;
+  grid-template: 70px calc(100dvh - 130px) 60px / 100%;
   grid-template-areas:
     'header'
     'main'
@@ -215,7 +215,7 @@ select,
 
 @media (min-width: 800px) {
   body {
-    grid-template: 80px calc(100vh - 160px) 80px / 100%;
+    grid-template: 80px calc(100dvh - 160px) 80px / 100%;
     grid-template-areas:
       'header'
       'main'
