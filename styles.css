@@ -1,6 +1,7 @@
 :root {
   --border-style: 1px solid #d1d5db;
   --border-radius: 5px;
+  --hover-focus-background: #e6e6e6;
 }
 
 *,
@@ -90,16 +91,24 @@ button {
   transition: background-color 200ms ease-in;
 }
 
+a {
+  outline: none;
+}
+
 input:focus,
 select:focus,
 button:focus {
   box-shadow: 0 0 5px 2px #11182740;
 }
 
+a:focus {
+  background-color: var(--hover-focus-background);
+}
+
 input:hover,
 select:hover,
 button:hover {
-  background-color: #e6e6e6;
+  background-color: var(--hover-focus-background);
 }
 
 input {
