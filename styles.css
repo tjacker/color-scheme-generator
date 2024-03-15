@@ -1,5 +1,6 @@
 :root {
   --border-style: 1px solid #d1d5db;
+  --border-radius: 5px;
 }
 
 *,
@@ -75,22 +76,18 @@ h1 {
 input,
 select,
 button {
-  height: 40px;
   font-family: inherit;
   font-size: 0.875rem;
   font-weight: 500;
+  line-height: inherit;
   color: inherit;
   background-color: transparent;
   cursor: pointer;
   border: var(--border-style);
-  border-radius: 5px;
+  border-radius: var(--border-radius);
   outline: none;
+  margin: 0;
   transition: background-color 200ms ease-in;
-}
-
-button {
-  flex: 1 0 100%;
-  margin-top: 1em;
 }
 
 input:focus,
@@ -105,13 +102,49 @@ button:hover {
   background-color: #e6e6e6;
 }
 
+input {
+  min-width: 3.125rem;
+  height: 2.5rem;
+}
+
 select {
-  padding: 0.5em;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  width: 100%;
+  border: none;
+  padding: 0.785em 1.85em 0.785em 0.715em;
 }
 
 button {
+  flex: 1 0 100%;
+  margin-top: 1em;
   background-color: transparent;
-  padding: 0.5em 1em;
+  padding: 0.785em 1em;
+}
+
+.select-container {
+  display: grid;
+  grid-template-areas: 'select';
+  align-items: center;
+  border: var(--border-style);
+  border-radius: var(--border-radius);
+}
+
+.select-container::after {
+  justify-self: end;
+  content: '';
+  width: 0.75em;
+  height: 0.5em;
+  pointer-events: none;
+  background-color: #11182780;
+  clip-path: polygon(100% 0%, 0 0%, 50% 100%);
+  margin-right: 0.5em;
+}
+
+select,
+.select-container::after {
+  grid-area: select;
 }
 
 .results-container {
@@ -146,19 +179,24 @@ button {
     font-size: 2rem;
   }
 
+  form {
+    height: 84px;
+  }
+
   input,
   select,
   button {
     font-size: 1rem;
   }
 
-  form {
-    height: 84px;
+  select {
+    padding: 0.625em 1.625em 0.625em 0.625em;
   }
 
   button {
     flex: none;
     margin-top: 0;
+    padding: 0.625em 1em;
   }
 
   .result-values {
