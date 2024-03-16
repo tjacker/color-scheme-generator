@@ -1,4 +1,7 @@
 :root {
+  /* #111827 in RBB */
+  --font-color: 17, 24, 39;
+  --background-color: whitesmoke;
   --border-style: 1px solid #d1d5db;
   --border-radius: 5px;
   --hover-focus-background: #e6e6e6;
@@ -18,8 +21,8 @@ body {
     'main'
     'footer';
   font-family: 'Inter', sans-serif;
-  color: #111827;
-  background-color: whitesmoke;
+  color: rgb(var(--font-color));
+  background-color: var(--background-color);
 }
 
 header,
@@ -98,7 +101,7 @@ a {
 input:focus,
 select:focus,
 button:focus {
-  box-shadow: 0 0 5px 2px #11182740;
+  box-shadow: 0 0 5px 2px rgba(var(--font-color), 0.2);
 }
 
 a:focus {
@@ -125,13 +128,6 @@ select {
   padding: 0.785em 1.85em 0.785em 0.715em;
 }
 
-button {
-  flex: 1 0 100%;
-  margin-top: 1em;
-  background-color: transparent;
-  padding: 0.785em 1em;
-}
-
 .select-container {
   display: grid;
   grid-template-areas: 'select';
@@ -146,7 +142,7 @@ button {
   width: 0.75em;
   height: 0.5em;
   pointer-events: none;
-  background-color: #11182780;
+  background-color: rgba(var(--font-color), 0.8);
   clip-path: polygon(100% 0%, 0 0%, 50% 100%);
   margin-right: 0.5em;
 }
@@ -154,6 +150,13 @@ button {
 select,
 .select-container::after {
   grid-area: select;
+}
+
+.submit-button {
+  flex: 1 0 100%;
+  margin-top: 1em;
+  background-color: transparent;
+  padding: 0.785em 1em;
 }
 
 .results-container {
@@ -183,6 +186,50 @@ select,
   display: none;
 }
 
+.result-button {
+  border: none;
+  margin-top: 0;
+  padding: 0.15em;
+}
+
+.result-tooltip {
+  position: relative;
+}
+
+/* Tooltip content */
+.result-tooltip::before {
+  content: attr(data-tooltip);
+  top: -3em;
+  left: 50%;
+  color: var(--background-color);
+  background-color: rgb(var(--font-color));
+  border-radius: var(--border-radius);
+  padding: 0.5em;
+}
+
+/* Tooltip arrow */
+.result-tooltip::after {
+  content: '';
+  top: -0.85em;
+  left: 50%;
+  border: 10px solid transparent;
+  border-color: rgb(var(--font-color)) transparent transparent transparent;
+}
+
+.result-tooltip::before,
+.result-tooltip::after {
+  position: absolute;
+  font-size: 0.875rem;
+  transform: translateX(-50%);
+  transition: opacity 300ms;
+  opacity: 0;
+}
+
+.result-tooltip:hover::before,
+.result-tooltip:hover::after {
+  opacity: 1;
+}
+
 @media (min-width: 512px) {
   h1 {
     font-size: 2rem;
@@ -202,7 +249,7 @@ select,
     padding: 0.625em 1.625em 0.625em 0.625em;
   }
 
-  button {
+  .submit-button {
     flex: none;
     margin-top: 0;
     padding: 0.625em 1em;

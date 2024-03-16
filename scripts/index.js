@@ -32,7 +32,9 @@ import { debounce } from './utils.js';
             <div class="result-color" style="background-color: ${hex.value}"></div>
             <div class="result-values">
               <div class="result-name">${name.value}</div>
-              <div>${hex.value}</div>
+              <button class="result-button result-tooltip" type="button" data-tooltip="Copy" data-hex="${hex.value}" aria-label="Copy hex code ${hex.value}">
+                ${hex.value}
+              </button>
             </div>
           </div>
         `;
@@ -44,5 +46,29 @@ import { debounce } from './utils.js';
     // Make sure not to debounce prevent default
     e.preventDefault();
     debounceFetchColors();
+  });
+
+  resultsContainer.addEventListener('click', async (e) => {
+    const hexValue = e.target.dataset.hex;
+
+    if (hexValue) {
+      try {
+        await navigator.clipboard.writeText(hexValue);
+        e.target.dataset.tooltip = 'Copied!';
+      } catch (error) {
+        console.error('Error trying to use navigator.clipboard.writeText()', error);
+      }
+    }
+  });
+
+  resultsContainer.addEventListener('mouseout', (e) => {
+    const tooltip = e.target.dataset.tooltip;
+
+    if (tooltip) {
+      // Set delay equal to hover transition
+      setTimeout(() => {
+        e.target.dataset.tooltip = 'Copy';
+      }, 300);
+    }
   });
 })();
