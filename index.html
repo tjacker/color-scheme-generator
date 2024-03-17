@@ -9,6 +9,9 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
   <link rel="stylesheet" href="styles.css">
 </head>
 
@@ -22,18 +25,23 @@
       <input type="color" name="colorSelector" id="colorSelector" value="#2888b8" aria-label="Select base color">
       <!-- Custom select source https://moderncss.dev/custom-select-styles-with-pure-css/ -->
       <div class="select-container">
-        <select name="colorModes" id="colorModes" aria-label="Select color mode">
-          <option value="monochrome">Monochrome</option>
-          <option value="monochrome-dark">Monochrome Dark</option>
-          <option value="monochrome-light">Monochrome Light</option>
-          <option value="analogic">Analogic</option>
-          <option value="complement">Complement</option>
-          <option value="analogic-complement">Analogic Complement</option>
-          <option value="triad">Triad</option>
-          <option value="quad">Quad</option>
-        </select>
+        <div class="select-field">
+          <select name="colorModes" id="colorModes" aria-label="Select color mode">
+            <option value="monochrome">Monochrome</option>
+            <option value="monochrome-dark">Monochrome Dark</option>
+            <option value="monochrome-light">Monochrome Light</option>
+            <option value="analogic">Analogic</option>
+            <option value="complement">Complement</option>
+            <option value="analogic-complement">Analogic Complement</option>
+            <option value="triad">Triad</option>
+            <option value="quad">Quad</option>
+          </select>
+        </div>
+        <button id="definitionOpenBtn" class="icon-btn" type="button">
+          <i class="fa-regular fa-circle-question"></i>
+        </button>
       </div>
-      <button class="submit-button" type="submit">Get Color Scheme</button>
+      <button class="submit-btn" type="submit">Get Color Scheme</button>
     </form>
     <div id="resultsContainer" class="results-container"></div>
   </main>
@@ -44,7 +52,9 @@
     <section class="definition-container">
       <header class="definition-header">
         <h2 class="definition-title">Color Scheme Descriptions</h2>
-        <button id="definitionBtn" class="definition-btn" type="button">X</button>
+        <button id="definitionCloseBtn" class="icon-btn" type="button">
+          <i class="fa-regular fa-circle-xmark"></i>
+        </button>
       </header>
       <p>These definitions encompass the core concepts of each color scheme within the realm of color theory and design.
       </p>

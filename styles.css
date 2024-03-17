@@ -25,6 +25,10 @@ body {
   background-color: var(--background-color);
 }
 
+body.modal-open {
+  overflow: hidden;
+}
+
 header,
 main,
 footer {
@@ -54,7 +58,6 @@ main {
 
 form {
   grid-area: form;
-  height: 140px;
   justify-content: space-between;
   flex-wrap: wrap;
   border-bottom: var(--border-style);
@@ -148,31 +151,43 @@ dt::before {
   margin-top: 1em;
 }
 
+.icon-btn {
+  font-size: 1.5rem;
+  color: rgba(var(--font-color), 0.7);
+  border: none;
+  padding: 0.25em;
+}
+
 .select-container {
+  display: flex;
+}
+
+.select-field {
   display: grid;
   grid-template-areas: 'select';
   align-items: center;
   border: var(--border-style);
   border-radius: var(--border-radius);
+  margin-right: 0.5em;
 }
 
-.select-container::after {
+.select-field::after {
   justify-self: end;
   content: '';
   width: 0.75em;
   height: 0.5em;
   pointer-events: none;
-  background-color: rgba(var(--font-color), 0.8);
+  background-color: rgba(var(--font-color), 0.7);
   clip-path: polygon(100% 0%, 0 0%, 50% 100%);
   margin-right: 0.5em;
 }
 
 select,
-.select-container::after {
+.select-field::after {
   grid-area: select;
 }
 
-.submit-button {
+.submit-btn {
   flex: 1 0 100%;
   margin-top: 1em;
   background-color: transparent;
@@ -206,7 +221,7 @@ select,
   display: none;
 }
 
-.result-button {
+.result-btn {
   border: none;
   margin-top: 0;
   padding: 0.15em;
@@ -251,21 +266,33 @@ select,
 }
 
 .definition-modal {
-  /* display: none; */
   display: flex;
+  visibility: hidden;
   justify-content: center;
   align-items: center;
   position: fixed;
   width: 100%;
   height: 100dvh;
-  background-color: rgb(var(--font-color), 0.5);
+  background-color: rgb(var(--font-color), 0.4);
   padding: 1.5em;
+  opacity: 0;
+  transform: scale(0.85);
+  transition: all 300ms ease-in-out;
+}
+
+.modal-open .definition-modal {
+  visibility: visible;
+  opacity: 1;
+  transform: scale(1);
 }
 
 .definition-container {
   width: 100%;
   max-width: 520px;
+  max-height: 80dvh;
   background-color: var(--background-color);
+  border-radius: calc(var(--border-radius) * 2);
+  overflow: auto;
   padding: 1.5em;
 }
 
@@ -277,24 +304,13 @@ select,
 }
 
 .definition-title {
+  font-size: 20px;
   margin: 0;
-}
-
-.definition-btn {
-  width: 40px;
-  height: 40px;
-  border: var(--border-style);
-  border-radius: 50%;
-  padding: 0;
 }
 
 @media (min-width: 512px) {
   h1 {
     font-size: 2rem;
-  }
-
-  form {
-    height: 84px;
   }
 
   input,
@@ -307,12 +323,6 @@ select,
     padding: 0.625em 1.625em 0.625em 0.625em;
   }
 
-  .submit-button {
-    flex: none;
-    margin-top: 0;
-    padding: 0.625em 1em;
-  }
-
   .result-values {
     font-size: 1rem;
   }
@@ -320,11 +330,17 @@ select,
 
 @media (min-width: 800px) {
   body {
-    grid-template: 80px calc(100dvh - 160px) 80px / 100%;
+    grid-template: 84px calc(100dvh - 164px) 80px / 100%;
     grid-template-areas:
       'header'
       'main'
       'footer';
+  }
+
+  .submit-btn {
+    flex: none;
+    margin-top: 0;
+    padding: 0.625em 1em;
   }
 
   .result-name {

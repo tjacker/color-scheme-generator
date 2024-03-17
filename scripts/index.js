@@ -7,7 +7,8 @@ import { debounce } from './utils.js';
   const form = document.querySelector('form');
   const resultsContainer = document.getElementById('resultsContainer');
   const definitionModal = document.getElementById('definitionModal');
-  const definitionBtn = document.getElementById('definitionBtn');
+  const definitionOpenBtn = document.getElementById('definitionOpenBtn');
+  const definitionCloseBtn = document.getElementById('definitionCloseBtn');
 
   const debounceFetchColors = debounce(fetchColors, 350);
 
@@ -34,7 +35,7 @@ import { debounce } from './utils.js';
             <div class="result-color" style="background-color: ${hex.value}"></div>
             <div class="result-values">
               <div class="result-name">${name.value}</div>
-              <button class="result-button result-tooltip" type="button" data-tooltip="Copy" data-hex="${hex.value}" aria-label="Copy hex code ${hex.value}">
+              <button class="result-btn result-tooltip" type="button" data-tooltip="Copy" data-hex="${hex.value}" aria-label="Copy hex code ${hex.value}">
                 ${hex.value}
               </button>
             </div>
@@ -74,7 +75,11 @@ import { debounce } from './utils.js';
     }
   });
 
-  definitionBtn.addEventListener('click', () => {
-    definitionModal.style.display = 'none';
+  definitionOpenBtn.addEventListener('click', () => {
+    document.body.classList.add('modal-open');
+  });
+
+  definitionCloseBtn.addEventListener('click', () => {
+    document.body.classList.remove('modal-open');
   });
 })();
