@@ -6,6 +6,8 @@ import { debounce } from './utils.js';
   const colorModes = document.getElementById('colorModes');
   const form = document.querySelector('form');
   const resultsContainer = document.getElementById('resultsContainer');
+  const definitionModal = document.getElementById('definitionModal');
+  const definitionBtn = document.getElementById('definitionBtn');
 
   const debounceFetchColors = debounce(fetchColors, 350);
 
@@ -70,5 +72,9 @@ import { debounce } from './utils.js';
         e.target.dataset.tooltip = 'Copy';
       }, 300);
     }
+  });
+
+  definitionBtn.addEventListener('click', () => {
+    definitionModal.style.display = 'none';
   });
 })();

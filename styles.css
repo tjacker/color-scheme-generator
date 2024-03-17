@@ -128,6 +128,26 @@ select {
   padding: 0.785em 1.85em 0.785em 0.715em;
 }
 
+dl {
+  margin: 0;
+}
+
+dt {
+  display: inline;
+  font-weight: bold;
+}
+
+dd {
+  display: inline;
+  margin: 0;
+}
+
+dt::before {
+  content: '';
+  display: block;
+  margin-top: 1em;
+}
+
 .select-container {
   display: grid;
   grid-template-areas: 'select';
@@ -228,6 +248,44 @@ select,
 .result-tooltip:hover::before,
 .result-tooltip:hover::after {
   opacity: 1;
+}
+
+.definition-modal {
+  /* display: none; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  width: 100%;
+  height: 100dvh;
+  background-color: rgb(var(--font-color), 0.5);
+  padding: 1.5em;
+}
+
+.definition-container {
+  width: 100%;
+  max-width: 520px;
+  background-color: var(--background-color);
+  padding: 1.5em;
+}
+
+.definition-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 0 1em 0;
+}
+
+.definition-title {
+  margin: 0;
+}
+
+.definition-btn {
+  width: 40px;
+  height: 40px;
+  border: var(--border-style);
+  border-radius: 50%;
+  padding: 0;
 }
 
 @media (min-width: 512px) {
