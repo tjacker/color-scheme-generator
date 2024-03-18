@@ -82,4 +82,6 @@ import { debounce } from './utils.js';
   definitionCloseBtn.addEventListener('click', () => {
     document.body.classList.remove('modal-open');
   });
+
+  fetchColors();
 })();
